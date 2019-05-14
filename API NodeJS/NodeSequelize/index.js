@@ -20,8 +20,9 @@ app.get('/find/:id', (req, res) => {
   res.json('Im in register');
 });
 
-app.get('/findall', (req, res) => {
-  res.json('Im in Find All');
+app.get('/users', async (req, res) => {
+	const users = await User.findAll();
+  	res.json(users);
 });
 
 app.put('/update/:id', (req, res) => {
