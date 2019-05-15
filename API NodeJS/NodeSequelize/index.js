@@ -16,9 +16,19 @@ app.post('/register', async (req, res) => {
   res.json(user);
 });
 
-app.get('/find/:id', (req, res) => {
-  res.json('Im in register');
+app.post('/events/:id', (req, res) => {
+  res.json(events);
 });
+
+app.get('/events/:id', (req, res) => {
+  res.json('recebendo');
+});
+
+app.put('/devices/:id', (req, res) => {
+  res.json('devices conectado');
+});
+
+
 
 app.get('/users', async (req, res) => {
 	const users = await User.findAll();
