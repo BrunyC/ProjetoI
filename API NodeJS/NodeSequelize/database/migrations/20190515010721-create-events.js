@@ -8,15 +8,16 @@ module.exports = {
         type: DataTypes.INTEGER
       },
       device: {
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.INTEGER,
+        references:{model:'devices',key:'id'}
       },
       data: {
         allowNull: false,
         type: DataTypes.STRING,
         unique: true,
       },
-      late: {
+      lat: {
         allowNull: false,
         type: DataTypes.INTEGER,
       },

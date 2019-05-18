@@ -1,11 +1,15 @@
 module.exports = (sequelize, DataTypes) => {
   const Event = sequelize.define('Event', {
-    device: DataTypes.INT,
+    device: DataTypes.INTEGER,
     data: DataTypes.DATE,
-    lat: DataTypes.INT,
-    long: DataTypes.INT,
+    lat: DataTypes.INTEGER,
+    long: DataTypes.INTEGER,
     descri:DataTypes.STRING
-  });
+  },
+  {
+    timestamps: false
+  }
+  );
 
   return Event;
 }

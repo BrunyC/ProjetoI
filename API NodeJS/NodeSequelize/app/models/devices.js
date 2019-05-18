@@ -1,12 +1,9 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const devices = sequelize.define('devices', {
+  const Devices = sequelize.define('Devices', {
     device: DataTypes.INTEGER,
     lat: DataTypes.INTEGER,
     long: DataTypes.INTEGER
-  }, {});
-  devices.associate = function(models) {
-    // associations can be defined here
-  };
-  return devices;
+  },);
+  return Devices;
 };

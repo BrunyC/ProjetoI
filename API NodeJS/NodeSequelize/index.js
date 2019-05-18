@@ -1,46 +1,37 @@
 
 const { User } = require('./app/models');
-const { Cars } = require('./app/models')
-const { Location } = require('./app/models');
+const { Event } = require('./app/models');
+
+
+
 const express = require('express');
 const bodyParser = require('body-parser');
-//User.create({ name: 'Bruno', email: 'brunojesus@gmail.com.br', password: '123456' });
 
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.post('/register', async (req, res) => {
-  const user = await User.create(req.body);
-  res.json(user);
-});
 
-app.post('/events/:id', (req, res) => {
-  res.json(events);
-});
-
-app.get('/events/:id', (req, res) => {
-  res.json('recebendo');
-});
-
+//to do
 app.put('/devices/:id', (req, res) => {
-  res.json('devices conectado');
+  res.json(devices);
 });
 
-
-
-app.get('/users', async (req, res) => {
-	const users = await User.findAll();
-  	res.json(users);
+app.post('/devices/:id/events', async (req, res) => {
+	const event = await Event.create({
+        device: req.body.device,
+        data: req.body.data,
+        lat: req.body.lat,
+        long: req.body.long,
+        descri: req.body.descri
+    });
+    res.send(event);
 });
 
-app.put('/update/:id', (req, res) => {
-  res.json('Im in update');
+app.get('/devices/:id/events', (req, res) => {
+  res.json(devices);
 });
 
-app.delete('/delete/:id', (req, res) => {
-  res.json('Im in delete');
-});
 
 app.listen(3000);
