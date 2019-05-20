@@ -10,7 +10,7 @@ module.exports = {
       device: {
         allowNull: true,
         type: DataTypes.INTEGER,
-        references:{model:'devices',key:'id'}
+        references:{model:'Devices',key:'id'}
       },
       data: {
         allowNull: false,
