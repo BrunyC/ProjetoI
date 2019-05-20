@@ -12,8 +12,6 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-
-//to do
 app.put('/devices/:id', (req, res) => {
 	Devices.update(req.body, {
 		where: req.params
@@ -35,8 +33,7 @@ app.post('/devices/:id/events', async (req, res) => {
 });
 
 app.get('/devices/:id/events', (req, res) => {
-	console.log(JSON.stringify(req.device));
-  	devices.findOne({where: req.device}).then(devices => {
+  	devices.findOne({where: req.params}).then(devices => {
 		res.send(devices);
 	});
 });
