@@ -1,7 +1,7 @@
 
 const { User } = require('./app/models');
 const { Event } = require('./app/models');
-
+const { Devices } = require('./app/models');
 
 
 const express = require('express');
@@ -15,7 +15,12 @@ app.use(bodyParser.json());
 
 //to do
 app.put('/devices/:id', (req, res) => {
-  res.json(devices);
+	Devices.update(req.body, {
+		where: req.params
+	}).then( rec => {
+		res.send({updated: rec});
+	})
+	
 });
 
 app.post('/devices/:id/events', async (req, res) => {
@@ -30,7 +35,10 @@ app.post('/devices/:id/events', async (req, res) => {
 });
 
 app.get('/devices/:id/events', (req, res) => {
-  res.json(devices);
+	console.log(JSON.stringify(req.device));
+  	devices.findOne({where: req.device}).then(devices => {
+		res.send(devices);
+	});
 });
 
 
