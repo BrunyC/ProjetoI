@@ -33,7 +33,7 @@ app.post('/devices/:id/events', async (req, res) => {
 });
 
 app.get('/devices/:id/events', (req, res) => {
-  	devices.findOne({where: req.params}).then(devices => {
+  	Event.findList({where: req.params}).then(Event => {
 		res.send(devices);
 	});
 });
