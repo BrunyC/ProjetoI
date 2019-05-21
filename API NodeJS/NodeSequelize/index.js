@@ -2,6 +2,7 @@
 const { User } = require('./app/models');
 const { Event } = require('./app/models');
 const { Devices } = require('./app/models');
+const distance = require('./app/distance');
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -16,8 +17,12 @@ app.put('/devices/:id', (req, res) => {
 		where: req.params
 	}).then( rec => {
 		res.send({updated: rec});
-	})
-	
+	});
+});
+
+app.get('/events', (req, res) => {
+    var dis = distance(-21.972774, -46.792534, -21.835985, -46.895058);	
+	res.json(dis);
 });
 
 app.post('/devices/:id/events', async (req, res) => {

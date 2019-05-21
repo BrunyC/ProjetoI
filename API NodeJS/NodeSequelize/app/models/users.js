@@ -6,9 +6,12 @@ module.exports = (sequelize, DataTypes) => {
     CPF: DataTypes.STRING,
     modelcar: DataTypes.STRING,
     corcar: DataTypes.STRING,
-    placa: DataTypes.STRING,
-
-  });
+    placa: DataTypes.STRING
+  },
+  {
+    timestamps: false
+  }
+  );
 
   return User;
 }
