@@ -3,7 +3,6 @@ const { User } = require('./app/models');
 const { Event } = require('./app/models');
 const { Devices } = require('./app/models');
 
-
 const express = require('express');
 const bodyParser = require('body-parser');
 
@@ -33,8 +32,8 @@ app.post('/devices/:id/events', async (req, res) => {
 });
 
 app.get('/devices/:id/events', (req, res) => {
-  	devices.findOne({where: req.params}).then(devices => {
-		res.send(devices);
+  	Event.findAll({where: req.params}).then(events => {
+		res.send(events);
 	});
 });
 
