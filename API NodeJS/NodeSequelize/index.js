@@ -32,7 +32,7 @@ app.post('/devices/:id/events', async (req, res) => {
 });
 
 app.get('/devices/:id/events', (req, res) => {
-  	Event.findAll({where: req.params}).then(events => {
+  	Event.findAll({where: {device: req.params.id}}).then(events => {
 		res.send(events);
 	});
 });
