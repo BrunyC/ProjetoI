@@ -36,12 +36,12 @@ app.post('/login', (req, res) => {
 		    });
 	});
 });
-//pronto
+
 app.get('/devices', async (req, res) => {
 	const devices = await Devices.findAll();
 	res.send(devices);
 });
-//ah fazer
+
 app.get('/devices/:id',(req, res) => {
 	Devices.findOne({where: {device: req.params.id}}).then(device => {
 		res.send(device);
