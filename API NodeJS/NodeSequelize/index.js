@@ -12,7 +12,6 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-
 app.post('/login', (req, res) => {
 	User.findOne({where: 
 		{email: req.body.email}}).then(user => {
@@ -35,10 +34,20 @@ app.post('/login', (req, res) => {
 		    res.json({
 		       message: 'Login: Ok',
 		    });
-			
 	});
 });
-	    
+//pronto
+app.get('/devices', async (req, res) => {
+	const devices = await Devices.findAll();
+	res.send(devices);
+});
+//ah fazer
+app.get('/devices/:id',(req, res) => {
+	Devices.findOne({where: {device: req.params.id}}).then(device => {
+		res.send(device);
+	});
+});
+    
 app.put('/devices/:id', (req, res) => {
 	Devices.update(req.body, {
 		where: req.params
@@ -47,11 +56,24 @@ app.put('/devices/:id', (req, res) => {
 	});
 });
 
-app.get('/events', (req, res) => {
-	var dis = distance(-21.972774, -46.792534, -21.835985, -46.895058);	
-	res.json(dis);
-});
+/*app.get('/events', async (req, res) => {
+	var dis = distance(-21.972774, -46.792534, -21.835985, -46.895058);
+	var lat = req.query.lat;
+	var long = req.query.long;
 
+	let events = await Event.findAll();
+
+	//let filtrado = events.filter(event => event <= ){
+
+	//}
+
+	//console.log(filtrado)
+
+
+	//nearby.forEach(perimetro)
+	//res.json(nearby);
+});
+*/
 app.post('/devices/:id/events', async (req, res) => {
 	const event = await Event.create({
 		device: req.body.device,
