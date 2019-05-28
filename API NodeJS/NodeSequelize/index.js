@@ -47,9 +47,22 @@ app.put('/devices/:id', (req, res) => {
 	});
 });
 
-app.get('/events', (req, res) => {
-	var dis = distance(-21.972774, -46.792534, -21.835985, -46.895058);	
-	res.json(dis);
+app.get('/events', async (req, res) => {
+	var lat = req.query.lat;
+	var long = req.query.long;
+
+	let events = await Event.findAll();
+
+	let filtered = events.filter(event => {
+    let latEvento = event.lat;
+		let longEvento = event.long;
+
+		let eventDistance = distance(lat, long, latEvento, longEvento);
+			
+		return eventDistance <= 20000;
+	});
+
+	res.send(filtered);
 });
 
 app.post('/devices/:id/events', async (req, res) => {
