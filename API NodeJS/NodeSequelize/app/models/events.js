@@ -1,5 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const Event = sequelize.define('Event', {
+    
     device: DataTypes.INTEGER,
     data: DataTypes.DATE,
     lat: DataTypes.STRING,
@@ -9,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
   {
     timestamps: false
   }
-  );
+  ); 
 
   return Event;
 }
