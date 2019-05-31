@@ -26,10 +26,9 @@ app.post('/login', (req, res) => {
 		        success: false,
 		        message: 'A autenticação falhou, a senha está incorreta'
 		      });
-
 		    }  
 
-		    res.json({
+		   res.json({
 		       message: 'Login: Ok',
 		    });
 	});
