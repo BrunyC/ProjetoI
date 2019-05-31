@@ -15,14 +15,12 @@ app.use(bodyParser.json());
 app.post('/login', (req, res) => {
 	User.findOne({where: 
 		{email: req.body.email}}).then(user => {
-			// Verifica se usuario existe
 			if (!user) {
 		      res.json({
 		        success: false,
 		        message: 'A autenticação falhou, o usuário não foi encontrado'
 		      });
 		    }
-		      // Verificamos se a senha é correta
 		    if (user.password !== req.body.password) {
 		      	res.json({
 		        success: false,
@@ -73,7 +71,6 @@ app.get('/events', async (req, res) => {
 
 	res.send(filtered);
 });
-
 app.post('/devices/:id/events', async (req, res) => {
 	const event = await Event.create({
 		device: req.body.device,
@@ -84,12 +81,9 @@ app.post('/devices/:id/events', async (req, res) => {
 	});
 	res.send(event);
 });
-
 app.get('/devices/:id/events', (req, res) => {
 	Event.findAll({where: {device: req.params.id}}).then(events => {
 		res.send(events);
 	});
 });
-
-
 app.listen(3000);
